@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maceió Detox — Painel Administrativo</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ===== tela de senha (bloqueio simples, não é segurança real) ===== -->
+<div class="gate" id="gate">
+  <h2>Painel Administrativo</h2>
+  <p>Digite a senha de acesso ao painel do cardápio.</p>
+  <input type="password" id="gatePassword" placeholder="Senha">
+  <button class="btn btn-primary" id="gateBtn">Entrar</button>
+  <div class="gate-error" id="gateError"></div>
+</div>
+
+<!-- ===== painel (fica escondido até digitar a senha) ===== -->
+<div id="adminApp" style="display:none;">
+
+  <header class="admin-header">
+    <div class="container">
+      <a href="index.html" class="logo">Maceió <span>Detox</span> · Admin</a>
+      <a href="index.html" class="back">← Voltar para o site</a>
+    </div>
+  </header>
+
+  <div class="admin-wrap">
+
+    <div class="admin-note">
+      <strong>Como funciona:</strong> este painel não salva nada em nenhum servidor — tudo acontece aqui no seu navegador.
+      1) Clique em "Carregar cardápio atual" e selecione o arquivo <code>data/menu.js</code> do seu computador.
+      2) Adicione, edite ou remova pratos e fotos. 3) Clique em "Baixar menu.js atualizado" e envie o arquivo baixado
+      por FTP para dentro da pasta <code>/data</code> do site no InfinityFree, substituindo o arquivo antigo.
+    </div>
+
+    <div class="admin-toolbar">
+      <div>
+        <label class="btn btn-outline" style="cursor:pointer;">
+          📂 Carregar cardápio atual
+          <input type="file" id="importFile" accept=".js" style="display:none;">
+        </label>
+        <span class="file-label" id="importStatus">Nenhum arquivo carregado ainda — usando o cardápio de exemplo.</span>
+      </div>
+      <button class="btn btn-accent" id="newDishBtn">+ Novo prato</button>
+    </div>
+
+    <!-- ===== dados da loja ===== -->
+    <div class="admin-section">
+      <h3>Dados da loja</h3>
+      <div class="form-grid">
+        <label>Nome da loja
+          <input type="text" id="storeName">
+        </label>
+        <label>Slogan
+          <input type="text" id="storeSlogan">
+        </label>
+        <label>WhatsApp (com DDI e DDD, só números — ex: 5582999998888)
+          <input type="text" id="storeWhatsapp">
+        </label>
+        <label>Endereço resumido (aparece no rodapé)
+          <input type="text" id="storeAddress">
+        </label>
+        <label class="full">Horário de funcionamento
+          <input type="text" id="storeHours">
+        </label>
+      </div>
+    </div>
+
+    <!-- ===== lista de pratos ===== -->
+    <div class="admin-section">
+      <h3>Pratos cadastrados</h3>
+      <div id="dishList"></div>
+    </div>
+
+    <!-- ===== formulário de prato (add/editar) ===== -->
+    <div class="admin-section" id="dishFormSection" style="display:none;">
+      <h3 id="dishFormTitle">Novo prato</h3>
+      <div class="form-grid">
+        <label>Nome do prato
+          <input type="text" id="fName">
+        </label>
+        <label>Categoria
+          <select id="fCategory"></select>
+        </label>
+        <label class="full">Descrição
+          <textarea id="fDescription" rows="2"></textarea>
+        </label>
+        <label>Preço (R$)
+          <input type="number" id="fPrice" step="0.10" min="0">
+        </label>
+        <label>Tags (separadas por vírgula — ex: vegano, sem glúten)
+          <input type="text" id="fTags">
+        </label>
+        <label class="full">Foto do prato
+          <input type="file" id="fPhoto" accept="image/*">
+          <div class="image-preview" id="photoPreview">Sem foto</div>
+        </label>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" id="saveDishBtn">Salvar prato</button>
+        <button class="btn btn-outline" id="cancelDishBtn">Cancelar</button>
+      </div>
+    </div>
+
+    <div class="download-bar">
+      <p>Depois de terminar as alterações, baixe o arquivo atualizado e envie por FTP para a pasta <code>/data</code> do site.</p>
+      <button class="btn btn-accent" id="downloadBtn">⬇ Baixar menu.js atualizado</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="data/menu.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

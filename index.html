@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maceió Detox — Sabor de verdade, leveza de verdade</title>
+<meta name="description" content="Cardápio digital Maceió Detox: sucos, marmitas fit, saladas e sobremesas. Peça pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#top" class="logo">Maceió <span>Detox</span></a>
+    <nav class="nav-links">
+      <a href="#top">Início</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="openCartBtn" aria-label="Abrir carrinho">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <a href="#cardapio" class="btn btn-primary">Pedir agora</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-text">
+      <span class="hero-eyebrow">Comida de verdade · Feita todo dia</span>
+      <h1>Sabor de <em>verdade</em>,<br>leveza de verdade.</h1>
+      <p class="lead">Marmitas, sucos e saladas frescas, preparadas com ingredientes de verdade — pedidos direto pelo WhatsApp, sem enrolação.</p>
+      <div class="hero-ctas">
+        <a href="#cardapio" class="btn btn-accent">Ver cardápio →</a>
+        <a href="#sobre" class="btn btn-outline">Conhecer a Maceió Detox</a>
+      </div>
+      <div class="hero-features">
+        <div class="hero-feature"><span class="dot"></span>Ingredientes frescos, todo dia</div>
+        <div class="hero-feature"><span class="dot"></span>Entrega rápida em Maceió</div>
+        <div class="hero-feature"><span class="dot"></span>Pedido direto no WhatsApp</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="plate"><img src="images/foto-destaque-hero.png" alt="Marmita Maceió Detox"></div>
+      <div class="stamp">100% natural · feito na hora</div>
+      <div class="rating-card">
+        <strong>4.9★</strong>
+        <span class="stars">★★★★★</span>
+        <span>Clientes satisfeitos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="category-nav" id="categoryNav">
+  <div class="container" id="categoryPills"></div>
+</nav>
+
+<main class="menu-section container" id="cardapio">
+  <div id="menuContent"></div>
+
+  <div class="promo-banner">
+    <div>
+      <span class="eyebrow">Oferta da semana</span>
+      <h3>10% OFF no primeiro pedido pelo site</h3>
+      <p>Fale com a gente no WhatsApp e garanta o desconto no seu primeiro pedido.</p>
+    </div>
+    <div class="stamp promo-stamp">10% OFF primeira compra</div>
+  </div>
+</main>
+
+<section id="sobre" class="container" style="padding-bottom:60px;">
+  <div class="section-head">
+    <div><span class="eyebrow">Nossa história</span><h2>Sobre a Maceió Detox</h2></div>
+  </div>
+  <p style="max-width:640px;color:var(--ink-soft);font-size:0.95rem;">
+    A Maceió Detox nasceu para levar comida de verdade ao dia a dia de quem quer cuidar da saúde sem abrir mão do sabor.
+    Preparamos tudo fresco, todos os dias, com ingredientes selecionados — sem complicação, sem enrolação.
+  </p>
+</section>
+
+<footer class="site-footer" id="contato">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Maceió Detox</div>
+        <p style="font-size:0.85rem;opacity:0.8;max-width:260px;">Comida fresca e saudável, feita todo dia para quem quer viver mais leve.</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="#top">Início</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <ul>
+          <li id="footerWhatsapp">WhatsApp</li>
+          <li id="footerHorario">Horário de funcionamento</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li id="footerEndereco">Maceió, AL</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Maceió Detox. Todos os direitos reservados.</span>
+      <a href="admin.html" class="admin-link">Área administrativa</a>
+    </div>
+  </div>
+</footer>
+
+<button class="floating-cart" id="floatingCartBtn">
+  🛒 Ver pedido <span class="badge" id="floatingCartCount">0 · R$ 0,00</span>
+</button>
+
+<div class="overlay" id="overlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Seu pedido</h3>
+    <button class="close-btn" id="closeCartBtn">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span>Total</span>
+      <span id="cartTotal">R$ 0,00</span>
+    </div>
+    <form class="checkout-form" id="checkoutForm">
+      <label>Nome completo
+        <input type="text" id="custName" required placeholder="Seu nome">
+      </label>
+      <label>Endereço de entrega
+        <textarea id="custAddress" rows="2" required placeholder="Rua, número, bairro"></textarea>
+      </label>
+      <label>Forma de pagamento
+        <select id="custPayment" required>
+          <option value="" disabled selected>Selecione</option>
+          <option value="Pix">Pix</option>
+          <option value="Dinheiro">Dinheiro</option>
+          <option value="Cartão na entrega">Cartão na entrega</option>
+        </select>
+      </label>
+      <div class="form-error" id="formError"></div>
+    </form>
+    <button class="btn whatsapp-btn" id="sendOrderBtn">Enviar pedido no WhatsApp</button>
+  </div>
+</aside>
+
+<script src="data/menu.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

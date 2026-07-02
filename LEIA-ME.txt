@@ -1,0 +1,85 @@
+MACEIÓ DETOX — SITE + PAINEL ADMIN
+====================================
+
+O QUE É CADA ARQUIVO
+---------------------
+index.html          -> site que os clientes veem
+admin.html           -> painel administrativo (editar cardápio)
+css/style.css         -> visual do site
+css/admin.css         -> visual do painel admin
+js/script.js          -> funcionamento do site (carrinho, WhatsApp)
+js/admin.js           -> funcionamento do painel admin
+data/menu.js          -> ARQUIVO COM O CARDÁPIO (nome, preço, fotos, etc.)
+
+Você só vai precisar editar o data/menu.js indiretamente, pelo painel
+admin.html — não precisa mexer nele na mão.
+
+
+ANTES DE PUBLICAR — 2 AJUSTES OBRIGATÓRIOS
+--------------------------------------------
+1) Número de WhatsApp da loja:
+   - Abra admin.html no navegador (duplo clique no arquivo já funciona)
+   - Digite a senha: maceiodetox2026
+   - No campo "WhatsApp", coloque o número real com DDI+DDD, só números.
+     Exemplo: 55 82 99999-8888 vira 5582999998888
+   - Clique em "Baixar menu.js atualizado" e substitua o arquivo em data/menu.js
+
+2) Senha do painel admin:
+   - Abra o arquivo js/admin.js no Notepad
+   - Troque o texto "maceiodetox2026" (linha perto do topo) pela senha que quiser
+   - Lembre-se: como o site é estático (sem servidor), essa senha só afasta
+     curiosos — não é uma proteção real. Quem tem acesso ao FTP é quem
+     realmente controla o site.
+
+
+COMO PUBLICAR NO INFINITYFREE
+-------------------------------
+1) Crie/acesse sua conta e o hosting no InfinityFree
+2) Vá em "File Manager" (ou use um cliente FTP como o FileZilla com os dados
+   de FTP que o InfinityFree fornece)
+3) Envie TODA a pasta deste site (index.html, admin.html, css/, js/, data/,
+   images/) para dentro da pasta htdocs
+4) Pronto — acesse seu domínio para ver o site no ar, e seudominio.com/admin.html
+   para acessar o painel
+
+
+COMO ATUALIZAR O CARDÁPIO NO DIA A DIA
+-----------------------------------------
+1) Abra admin.html (pode ser direto pelo link do seu site publicado)
+2) Digite a senha
+3) Clique em "Carregar cardápio atual" e selecione o data/menu.js que está
+   publicado (baixe ele do File Manager do InfinityFree primeiro, ou guarde
+   sempre a última versão salva no seu computador)
+4) Adicione, edite ou remova pratos e fotos
+5) Clique em "Baixar menu.js atualizado"
+6) Envie o arquivo baixado por FTP para dentro da pasta /data, substituindo
+   o antigo
+7) Atualize a página do site (Ctrl+F5) para ver as mudanças
+
+Dica: guarde sempre uma cópia do data/menu.js mais recente no seu
+computador, numa pasta só sua — assim você sempre tem de onde partir
+quando for editar de novo.
+
+
+SOBRE AS FOTOS DOS PRATOS
+----------------------------
+As fotos ficam guardadas dentro do próprio arquivo menu.js (não como
+arquivos separados), então não é preciso enviar imagens soltas por FTP —
+só o menu.js. Por isso, no painel, evite fotos muito grandes (o sistema
+avisa se passar de ~900KB) para o site continuar carregando rápido.
+
+
+LIMITAÇÃO IMPORTANTE (leia com atenção)
+------------------------------------------
+Este site é 100% estático: HTML, CSS e JavaScript, sem Python e sem banco
+de dados — porque o InfinityFree não roda Python. Isso significa:
+- O cardápio só muda quando VOCÊ sobe um novo menu.js por FTP.
+- Não existe login de cliente nem histórico de pedidos guardado em banco.
+- Os pedidos chegam pelo WhatsApp, com nome, endereço, forma de pagamento
+  e o valor total já calculado — igual você pediu.
+
+Se no futuro você quiser: login de cliente, histórico de pedidos, ou
+edição do cardápio direto do celular sem precisar de FTP, aí sim vai
+precisar de um backend de verdade (PHP+MySQL funciona no InfinityFree;
+Python precisaria de uma hospedagem diferente, tipo Render ou Railway —
+que você já usa no Dispara Yuna).
