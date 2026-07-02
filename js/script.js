@@ -7,6 +7,7 @@
 (function () {
   const DATA = window.MENU_DATA;
   const money = (v) => "R$ " + Number(v).toFixed(2).replace(".", ",");
+  const MIN_ORDER_QTY = 5; // pedido mínimo total (em unidades) para liberar o envio no WhatsApp
 
   // -------- estado do carrinho (em memória, some ao recarregar a página) --------
   let cart = {}; // { dishId: quantidade }
@@ -137,6 +138,23 @@
     floatingCountEl.textContent = `${totalItems} · ${money(cartTotal())}`;
     cartTotalEl.textContent = money(cartTotal());
 
+    const sendBtn = document.getElementById("sendOrderBtn");
+    const noteEl = document.getElementById("minOrderNote");
+    if (totalItems === 0) {
+      noteEl.className = "min-order-note";
+      noteEl.textContent = "";
+      sendBtn.disabled = true;
+    } else if (totalItems < MIN_ORDER_QTY) {
+      const faltam = MIN_ORDER_QTY - totalItems;
+      noteEl.className = "min-order-note warning";
+      noteEl.textContent = `Pedido mínimo de ${MIN_ORDER_QTY} unidades. Falta${faltam > 1 ? "m" : ""} ${faltam} unidade${faltam > 1 ? "s" : ""} para liberar o envio.`;
+      sendBtn.disabled = true;
+    } else {
+      noteEl.className = "min-order-note ok";
+      noteEl.textContent = "Pedido mínimo atingido — pode enviar!";
+      sendBtn.disabled = false;
+    }
+
     if (entries.length === 0) {
       cartItemsEl.innerHTML = `<div class="cart-empty">Seu carrinho está vazio.<br>Adicione pratos do cardápio para começar.</div>`;
       return;
@@ -190,6 +208,11 @@
       formError.textContent = "Adicione ao menos um prato ao pedido.";
       return;
     }
+    const totalItems = entries.reduce((s, e) => s + e.qty, 0);
+    if (totalItems < MIN_ORDER_QTY) {
+      formError.textContent = `Pedido mínimo de ${MIN_ORDER_QTY} unidades. Adicione mais itens para continuar.`;
+      return;
+    }
     const name = document.getElementById("custName").value.trim();
     const address = document.getElementById("custAddress").value.trim();
     const payment = document.getElementById("custPayment").value;
@@ -221,6 +244,18 @@
   document.getElementById("menuToggle").addEventListener("click", () => {
     document.getElementById("cardapio").scrollIntoView({ behavior: "smooth" });
   });
+
+  // -------- exibir botão flutuante só depois de rolar um pouco --------
+  const floatingBtn = document.getElementById("floatingCartBtn");
+  function toggleFloatingCart() {
+    if (window.scrollY > 260) {
+      floatingBtn.classList.add("visible");
+    } else {
+      floatingBtn.classList.remove("visible");
+    }
+  }
+  window.addEventListener("scroll", toggleFloatingCart, { passive: true });
+  toggleFloatingCart();
 
   // -------- inicialização --------
   renderCategoryPills();

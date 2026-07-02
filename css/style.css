@@ -72,7 +72,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 78px;
+  min-height: 78px;
+  gap: 12px;
 }
 .logo {
   font-family: var(--font-display);
@@ -466,8 +467,16 @@ ul { list-style: none; margin: 0; padding: 0; }
   align-items: center;
   gap: 10px;
   font-weight: 700;
-  box-shadow: 0 14px 30px rgba(239, 111, 78, 0.45);
-  transition: transform 0.2s ease;
+  box-shadow: 0 14px 30px rgba(76, 140, 60, 0.45);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+.floating-cart.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 .floating-cart:hover { transform: translateY(-3px); }
 .floating-cart .badge {
@@ -563,6 +572,31 @@ ul { list-style: none; margin: 0; padding: 0; }
   color: var(--primary);
   margin-bottom: 16px;
 }
+.min-order-note {
+  font-size: 0.78rem;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  display: none;
+}
+.min-order-note.warning {
+  display: block;
+  background: #FFF6E8;
+  border: 1px solid var(--mango);
+  color: #6B4A0E;
+}
+.min-order-note.ok {
+  display: block;
+  background: #EAF3E4;
+  border: 1px solid var(--accent);
+  color: var(--accent-dark);
+}
+.whatsapp-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.whatsapp-btn:disabled:hover { box-shadow: none; }
 .checkout-form { display: flex; flex-direction: column; gap: 12px; margin-bottom: 14px; }
 .checkout-form label {
   font-size: 0.78rem;
@@ -612,15 +646,23 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 @media (max-width: 720px) {
   .nav-links { display: none; }
+  .header-actions .btn-primary { display: none; }
   .menu-toggle {
     display: grid; place-items: center;
     width: 40px; height: 40px;
     background: var(--bg-alt); border: none; border-radius: 10px;
     font-size: 1.2rem;
   }
-  .hero { padding: 40px 0 24px; }
+  .site-header .container { min-height: 64px; }
+  .category-nav {
+    position: static;
+    top: auto;
+    padding: 12px 0 20px;
+  }
+  .hero { padding: 32px 0 24px; }
   .hero-features { grid-template-columns: 1fr; gap: 12px; }
   .promo-banner { padding: 28px; }
   .footer-grid { grid-template-columns: 1fr; }
   .cart-drawer { width: 100%; }
+  .floating-cart { bottom: 18px; right: 18px; padding: 13px 18px; font-size: 0.9rem; }
 }
